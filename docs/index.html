@@ -3,199 +3,109 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Presentación del PFO 2: API Flask con autenticación y persistencia SQLite.">
-  <title>PFO 2 | Sistema de Gestión de Tareas</title>
+  <meta name="description" content="PFO 2: servidor Flask con registro, login y acceso protegido.">
+  <title>PFO 2 - Sistema de gestión de tareas</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-  <header class="site-header">
-    <a class="brand" href="#inicio" aria-label="Ir al inicio">
-      <span class="brand-mark" aria-hidden="true">P2</span>
-      <span>PFO 2</span>
-    </a>
-    <nav aria-label="Navegación principal">
-      <a href="#proyecto">Proyecto</a>
-      <a href="#endpoints">Endpoints</a>
-      <a href="#pruebas">Pruebas</a>
-      <a href="#ejecucion">Ejecución</a>
-    </nav>
+  <header>
+    <div class="container">
+      <p class="materia">Programación sobre redes</p>
+      <h1>PFO 2 - Sistema de gestión de tareas</h1>
+      <p>Servidor desarrollado con Flask y SQLite.</p>
+    </div>
   </header>
 
-  <main id="contenido">
-    <section class="hero" id="inicio">
-      <div class="hero-copy">
-        <p class="eyebrow">Programación sobre redes</p>
-        <h1>Sistema de Gestión de Tareas</h1>
-        <p class="hero-text">
-          API REST desarrollada con Flask, autenticación mediante sesiones y
-          persistencia local con SQLite.
-        </p>
-        <div class="actions">
-          <a class="button button-primary" href="#endpoints">Ver endpoints</a>
-          <a class="button button-secondary" href="#pruebas">Ver pruebas</a>
-        </div>
-        <ul class="technology-list" aria-label="Tecnologías utilizadas">
-          <li>Python</li>
-          <li>Flask</li>
-          <li>SQLite</li>
-          <li>Pytest</li>
-        </ul>
-      </div>
-
-      <aside class="status-card" aria-label="Estado del proyecto">
-        <div class="status-heading">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span>Proyecto verificado</span>
-        </div>
-        <strong>6/6</strong>
-        <p>pruebas automáticas aprobadas</p>
-        <div class="status-line">
-          <span>Contraseñas</span>
-          <b>Hasheadas</b>
-        </div>
-        <div class="status-line">
-          <span>Persistencia</span>
-          <b>SQLite</b>
-        </div>
-        <div class="status-line">
-          <span>Acceso</span>
-          <b>Protegido</b>
-        </div>
-      </aside>
+  <main class="container" id="contenido">
+    <section>
+      <h2>Descripción</h2>
+      <p>
+        El proyecto permite registrar usuarios, iniciar sesión y acceder a una
+        página protegida. Las contraseñas se guardan como hashes y los datos se
+        almacenan en una base SQLite.
+      </p>
     </section>
 
-    <section class="section" id="proyecto">
-      <div class="section-heading">
-        <p class="eyebrow">Arquitectura</p>
-        <h2>Un flujo simple y verificable</h2>
-        <p>El cliente conserva la sesión, Flask procesa las solicitudes y SQLite almacena los usuarios.</p>
-      </div>
-
-      <div class="architecture" aria-label="Flujo de la aplicación">
-        <article>
-          <span class="step-number">01</span>
-          <h3>Cliente de consola</h3>
-          <p>Envía solicitudes HTTP y conserva la cookie recibida durante el login.</p>
-        </article>
-        <span class="arrow" aria-hidden="true">→</span>
-        <article>
-          <span class="step-number">02</span>
-          <h3>API Flask</h3>
-          <p>Valida datos, comprueba credenciales y protege el acceso a las tareas.</p>
-        </article>
-        <span class="arrow" aria-hidden="true">→</span>
-        <article>
-          <span class="step-number">03</span>
-          <h3>Base SQLite</h3>
-          <p>Guarda usuarios únicos y únicamente el hash de cada contraseña.</p>
-        </article>
+    <section>
+      <h2>Endpoints</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Método</th>
+              <th>Ruta</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>POST</code></td>
+              <td><code>/registro</code></td>
+              <td>Registra un usuario nuevo.</td>
+            </tr>
+            <tr>
+              <td><code>POST</code></td>
+              <td><code>/login</code></td>
+              <td>Verifica las credenciales e inicia la sesión.</td>
+            </tr>
+            <tr>
+              <td><code>GET</code></td>
+              <td><code>/tareas</code></td>
+              <td>Muestra la bienvenida al usuario autenticado.</td>
+            </tr>
+            <tr>
+              <td><code>POST</code></td>
+              <td><code>/logout</code></td>
+              <td>Cierra la sesión.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <section class="section" id="endpoints">
-      <div class="section-heading">
-        <p class="eyebrow">API REST</p>
-        <h2>Endpoints disponibles</h2>
-      </div>
-
-      <div class="endpoint-list">
-        <article class="endpoint">
-          <span class="method method-post">POST</span>
-          <code>/registro</code>
-          <p>Crea un usuario y almacena su contraseña de forma segura.</p>
-        </article>
-        <article class="endpoint">
-          <span class="method method-post">POST</span>
-          <code>/login</code>
-          <p>Verifica las credenciales e inicia una sesión.</p>
-        </article>
-        <article class="endpoint">
-          <span class="method method-get">GET</span>
-          <code>/tareas</code>
-          <p>Muestra el HTML de bienvenida al usuario autenticado.</p>
-        </article>
-        <article class="endpoint">
-          <span class="method method-post">POST</span>
-          <code>/logout</code>
-          <p>Elimina la sesión activa y vuelve a proteger el acceso.</p>
-        </article>
-      </div>
-
-      <div class="request-example">
-        <div>
-          <p class="eyebrow">Cuerpo de la solicitud</p>
-          <h3>Registro e inicio de sesión</h3>
-        </div>
-        <pre><code>{
+    <section>
+      <h2>Formato de registro y login</h2>
+      <pre><code>{
   "usuario": "Leandro",
   "contraseña": "1234"
 }</code></pre>
-      </div>
     </section>
 
-    <section class="section" id="pruebas">
-      <div class="section-heading">
-        <p class="eyebrow">Evidencia</p>
-        <h2>Pruebas exitosas</h2>
-        <p>Las capturas fueron obtenidas ejecutando el servidor y realizando solicitudes reales.</p>
-      </div>
+    <section>
+      <h2>Pruebas realizadas</h2>
+      <p>Se comprobó el registro y el acceso a la ruta protegida.</p>
 
-      <div class="evidence-grid">
+      <div class="screenshots">
         <figure>
-          <img src="assets/registro-exitoso.png" alt="Respuesta HTTP 201 después de registrar al usuario Leandro">
-          <figcaption>Registro correcto del usuario.</figcaption>
+          <img src="assets/registro-exitoso.png" width="960" height="540" loading="lazy"
+               alt="Respuesta del servidor después de registrar al usuario Leandro">
+          <figcaption>Registro de usuario.</figcaption>
         </figure>
         <figure>
-          <img src="assets/acceso-tareas.png" alt="Página de bienvenida mostrada al usuario Leandro después del login">
-          <figcaption>Acceso autenticado a la ruta de tareas.</figcaption>
+          <img src="assets/acceso-tareas.png" width="960" height="540" loading="lazy"
+               alt="Página de bienvenida después de iniciar sesión como Leandro">
+          <figcaption>Acceso con una sesión válida.</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="section" id="ejecucion">
-      <div class="section-heading">
-        <p class="eyebrow">Uso local</p>
-        <h2>Cómo ejecutar el proyecto</h2>
-      </div>
-
-      <ol class="run-steps">
-        <li>
-          <span>1</span>
-          <div>
-            <h3>Instalar dependencias</h3>
-            <pre><code>py -m pip install -r requirements.txt</code></pre>
-          </div>
-        </li>
-        <li>
-          <span>2</span>
-          <div>
-            <h3>Iniciar el servidor</h3>
-            <pre><code>py servidor.py</code></pre>
-          </div>
-        </li>
-        <li>
-          <span>3</span>
-          <div>
-            <h3>Abrir el cliente</h3>
-            <pre><code>py cliente.py</code></pre>
-          </div>
-        </li>
+    <section>
+      <h2>Ejecución local</h2>
+      <ol>
+        <li>Instalar las dependencias: <code>py -m pip install -r requirements.txt</code></li>
+        <li>Iniciar el servidor: <code>py servidor.py</code></li>
+        <li>Abrir otra terminal y ejecutar: <code>py cliente.py</code></li>
       </ol>
-
-      <aside class="pages-note">
-        <h3>Sobre esta publicación</h3>
-        <p>
-          GitHub Pages presenta la documentación y la evidencia del proyecto.
-          La API Flask y la base SQLite se ejecutan localmente.
-        </p>
-      </aside>
+      <p>
+        GitHub Pages muestra esta documentación. El servidor Flask se ejecuta
+        de forma local.
+      </p>
     </section>
   </main>
 
-  <footer>
-    <p>PFO 2 · Sistema de Gestión de Tareas</p>
+  <footer class="container">
     <p>Leandro Melchiori</p>
   </footer>
 </body>
