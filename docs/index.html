@@ -26,6 +26,10 @@
         página protegida. Las contraseñas se guardan como hashes y los datos se
         almacenan en una base SQLite.
       </p>
+      <p>
+        Código fuente disponible en
+        <a href="https://github.com/LeandroMelchiori/PFO2_Redes">GitHub</a>.
+      </p>
     </section>
 
     <section>
@@ -74,6 +78,16 @@
     </section>
 
     <section>
+      <h2>Cliente de consola</h2>
+      <p>
+        El archivo <code>cliente.py</code> permite registrar usuarios, iniciar
+        sesión, consultar la página de tareas y cerrar la sesión desde una
+        terminal. Utiliza <code>requests.Session</code> para conservar la cookie
+        enviada por el servidor.
+      </p>
+    </section>
+
+    <section>
       <h2>Pruebas realizadas</h2>
       <p>Se comprobó el registro y el acceso a la ruta protegida.</p>
 
@@ -93,14 +107,52 @@
 
     <section>
       <h2>Ejecución local</h2>
-      <ol>
-        <li>Instalar las dependencias: <code>py -m pip install -r requirements.txt</code></li>
-        <li>Iniciar el servidor: <code>py servidor.py</code></li>
-        <li>Abrir otra terminal y ejecutar: <code>py cliente.py</code></li>
-      </ol>
+      <h3>1. Preparar el entorno</h3>
+      <pre><code>py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+py -m pip install -r requirements.txt</code></pre>
+
+      <h3>2. Iniciar el servidor</h3>
+      <pre><code>$env:SECRET_KEY = "una-clave-local-larga-y-aleatoria"
+py servidor.py</code></pre>
+
+      <h3>3. Ejecutar el cliente</h3>
+      <p>En otra terminal:</p>
+      <pre><code>.\.venv\Scripts\Activate.ps1
+py cliente.py</code></pre>
+
+      <h3>4. Ejecutar las pruebas</h3>
+      <pre><code>py -m pip install -r requirements-dev.txt
+py -m pytest -v</code></pre>
+    </section>
+
+    <section>
+      <h2>Respuestas conceptuales</h2>
+
+      <h3>¿Por qué hashear contraseñas?</h3>
       <p>
-        GitHub Pages muestra esta documentación. El servidor Flask se ejecuta
-        de forma local.
+        El hash evita guardar la contraseña original. Si alguien obtiene la
+        base de datos, no encuentra las claves en texto plano. Para validar el
+        acceso se compara la contraseña ingresada con el hash almacenado.
+        Werkzeug utiliza un algoritmo lento y una sal aleatoria, lo que
+        dificulta los ataques por diccionario.
+      </p>
+
+      <h3>Ventajas de usar SQLite en este proyecto</h3>
+      <p>
+        SQLite no requiere instalar ni administrar un servidor de base de
+        datos. Guarda la información en un único archivo, viene integrado con
+        Python y ofrece transacciones, restricciones y consultas SQL. Es
+        apropiado para una aplicación de bajo tráfico y permite trasladar o
+        respaldar los datos con facilidad.
+      </p>
+    </section>
+
+    <section>
+      <h2>Publicación</h2>
+      <p>
+        GitHub Pages aloja esta documentación y las capturas. El servidor Flask
+        y la base SQLite se ejecutan de forma local.
       </p>
     </section>
   </main>
