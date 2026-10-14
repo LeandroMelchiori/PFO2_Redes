@@ -101,5 +101,7 @@ SQLite no requiere instalar ni administrar un servidor de base de datos. Guarda 
 
 La presentación estática del proyecto se encuentra en [`docs/index.html`](docs/index.html). Para publicarla, en la configuración del repositorio se debe seleccionar **Pages**, elegir **Deploy from a branch** y usar la rama `main` con la carpeta `/docs`.
 
+Sitio publicado: [GitHub Pages](https://leandromelchiori.github.io/PFO2_Redes/)
+
 GitHub Pages muestra la documentación y las capturas. El servidor Flask y SQLite se ejecutan localmente porque Pages no admite aplicaciones Python del lado servidor.
 
