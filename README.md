@@ -99,5 +99,7 @@ SQLite no requiere instalar ni administrar un servidor de base de datos. Guarda 
 
 ## GitHub Pages
 
-GitHub Pages publica únicamente archivos estáticos y no puede ejecutar el servidor Flask ni SQLite. El repositorio puede alojar el código y la documentación, pero la API debe ejecutarse localmente o desplegarse en un servicio compatible con Python. Si la consigna exige Pages, conviene usarlo solo para presentar la documentación del proyecto y aclarar dónde se ejecuta la API.
+La presentación estática del proyecto se encuentra en [`docs/index.html`](docs/index.html). Para publicarla, en la configuración del repositorio se debe seleccionar **Pages**, elegir **Deploy from a branch** y usar la rama `main` con la carpeta `/docs`.
+
+GitHub Pages muestra la documentación y las capturas. El servidor Flask y SQLite se ejecutan localmente porque Pages no admite aplicaciones Python del lado servidor.
 
