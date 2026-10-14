@@ -69,8 +69,6 @@ curl.exe -c cookies.txt -b cookies.txt -H "Content-Type: application/json" -d '{
 curl.exe -b cookies.txt http://127.0.0.1:5000/tareas
 ```
 
-`cookies.txt` es un archivo temporal y no debe subirse al repositorio.
-
 ## Pruebas automáticas
 
 ```powershell
@@ -97,7 +95,7 @@ El hash evita guardar la contraseña original. Si alguien obtiene la base de dat
 
 ### Ventajas de usar SQLite en este proyecto
 
-SQLite no requiere instalar ni administrar un servidor de base de datos. Guarda la información en un único archivo, viene integrado con Python y ofrece transacciones, restricciones y consultas SQL. Es apropiado para una aplicación educativa o de bajo tráfico y permite trasladar o respaldar los datos con facilidad.
+SQLite no requiere instalar ni administrar un servidor de base de datos. Guarda la información en un único archivo, viene integrado con Python y ofrece transacciones, restricciones y consultas SQL. Es apropiado para una aplicación de bajo tráfico y permite trasladar o respaldar los datos con facilidad.
 
 ## GitHub Pages
 
