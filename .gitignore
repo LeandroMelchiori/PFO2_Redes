@@ -4,6 +4,7 @@ AGENTS.md
 .pytest-tmp/
 .venv/
 tmp/
+output/
 *.py[cod]
 *.db
 .env
